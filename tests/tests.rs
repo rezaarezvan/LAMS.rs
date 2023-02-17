@@ -41,6 +41,15 @@ fn test_add_vectors() {
 }
 
 #[test]
+#[should_panic]
+fn test_add_vectors_panic() {
+    let v1 = linear_algebra::Vector::new(3);
+    let v2 = linear_algebra::Vector::new(4);
+
+    let _v3 = v1.add(&v2);
+}
+
+#[test]
 fn test_sub_vectors() {
     let v1 = linear_algebra::Vector::new(3);
     let v2 = linear_algebra::Vector::new(3);
