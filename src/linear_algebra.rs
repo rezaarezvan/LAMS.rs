@@ -36,5 +36,18 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn sub(&self, other: &Vector) -> Vector {
+            // Check so that the vectors are of the same size
+            // If not, return an error
+            assert_eq!(self.size, other.size, "Vectors must be of the same size!");
+
+            let mut result = Vector::new(self.size);
+            for i in 0..self.size {
+                result.data[i] = self.data[i] - other.data[i];
+            }
+
+            return result;
+        }
     }
 }
