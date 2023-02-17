@@ -59,3 +59,12 @@ fn test_sub_vectors() {
     assert_eq!(v3.data, vec![0.0; 3]);
     assert_eq!(v3.data.len(), 3);
 }
+
+#[test]
+#[should_panic]
+fn test_sub_vectors_panic() {
+    let v1 = linear_algebra::Vector::new(3);
+    let v2 = linear_algebra::Vector::new(4);
+
+    let _v3 = v1.sub(&v2);
+}
