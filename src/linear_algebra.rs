@@ -61,5 +61,19 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn dot(v1: &Vector, v2: &Vector) -> f64 {
+            // Check for same size
+            // If not, return an error
+            assert_eq!(v1.size, v2.size, "Vectors must be of the same size!");
+
+            let mut result: f64 = 0.0;
+
+            for i in 0..v1.size {
+                result += v1.data[i] * v2.data[i];
+            }
+
+            return result;
+        }
     }
 }
