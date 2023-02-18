@@ -68,3 +68,14 @@ fn test_sub_vectors_panic() {
 
     let _v3 = v1.sub(&v2);
 }
+
+#[test]
+fn test_scale_vector() {
+    let mut v1 = linear_algebra::Vector::new(3);
+    v1.set(vec![1.0, 2.0, 3.0]);
+
+    let v2 = v1.scale(2.0);
+    assert_eq!(v2.size, 3);
+    assert_eq!(v2.data, vec![2.0, 4.0, 6.0]);
+    assert_eq!(v2.data.len(), 3);
+}
