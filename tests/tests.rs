@@ -100,3 +100,12 @@ fn test_dot_vector_panic() {
 
     let _v3 = linear_algebra::Vector::dot(&v1, &v2);
 }
+
+#[test]
+fn test_norm_vector() {
+    let mut v1 = linear_algebra::Vector::new(3);
+    v1.set(vec![1.0, 2.0, 2.0]);
+
+    let v2 = linear_algebra::Vector::norm(&v1);
+    assert_eq!(v2, 3.0);
+}
