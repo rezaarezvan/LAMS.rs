@@ -49,5 +49,14 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn scale(&self, scalar: f64) -> Vector {
+            let mut result = Vector::new(self.size);
+            for i in 0..self.size {
+                result.data[i] = self.data[i] * scalar;
+            }
+
+            return result;
+        }
     }
 }
