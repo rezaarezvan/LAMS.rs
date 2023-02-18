@@ -75,5 +75,15 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn norm(v: &Vector) -> f64 {
+            let mut result: f64 = 0.0;
+
+            for i in 0..v.size {
+                result += v.data[i] * v.data[i];
+            }
+
+            return result.sqrt();
+        }
     }
 }
