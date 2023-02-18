@@ -30,6 +30,7 @@ pub mod linear_algebra {
             assert_eq!(self.size, other.size, "Vectors must be of the same size!");
 
             let mut result = Vector::new(self.size);
+
             for i in 0..self.size {
                 result.data[i] = self.data[i] + other.data[i];
             }
@@ -43,6 +44,7 @@ pub mod linear_algebra {
             assert_eq!(self.size, other.size, "Vectors must be of the same size!");
 
             let mut result = Vector::new(self.size);
+
             for i in 0..self.size {
                 result.data[i] = self.data[i] - other.data[i];
             }
@@ -52,6 +54,7 @@ pub mod linear_algebra {
 
         pub fn scale(&self, scalar: f64) -> Vector {
             let mut result = Vector::new(self.size);
+
             for i in 0..self.size {
                 result.data[i] = self.data[i] * scalar;
             }
