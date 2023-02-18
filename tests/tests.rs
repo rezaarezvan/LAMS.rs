@@ -79,3 +79,24 @@ fn test_scale_vector() {
     assert_eq!(v2.data, vec![2.0, 4.0, 6.0]);
     assert_eq!(v2.data.len(), 3);
 }
+
+#[test]
+fn test_dot_vector() {
+    let mut v1 = linear_algebra::Vector::new(3);
+    let mut v2 = linear_algebra::Vector::new(3);
+
+    v1.set(vec![1.0, 2.0, 3.0]);
+    v2.set(vec![3.0, 4.0, 5.0]);
+
+    let v3 = linear_algebra::Vector::dot(&v1, &v2);
+    assert_eq!(v3, 26.0);
+}
+
+#[test]
+#[should_panic]
+fn test_dot_vector_panic() {
+    let v1 = linear_algebra::Vector::new(3);
+    let v2 = linear_algebra::Vector::new(4);
+
+    let _v3 = linear_algebra::Vector::dot(&v1, &v2);
+}
