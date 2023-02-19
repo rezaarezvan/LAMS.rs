@@ -85,5 +85,17 @@ pub mod linear_algebra {
 
             return result.sqrt();
         }
+
+        pub fn normalize(v: &Vector) -> Vector {
+            let mut result = Vector::new(v.size);
+
+            let norm = Vector::norm(v);
+
+            for i in 0..v.size {
+                result.data[i] = v.data[i] / norm;
+            }
+
+            return result;
+        }
     }
 }
