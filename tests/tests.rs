@@ -123,3 +123,26 @@ fn test_normalize_vector() {
     );
     assert_eq!(v2.data.len(), 3);
 }
+
+#[test]
+fn test_cross_vectors() {
+    let mut v1 = linear_algebra::Vector::new(3);
+    let mut v2 = linear_algebra::Vector::new(3);
+
+    v1.set(vec![1.0, 2.0, 3.0]);
+    v2.set(vec![3.0, 4.0, 5.0]);
+
+    let v3 = linear_algebra::Vector::cross(&v1, &v2);
+    assert_eq!(v3.size, 3);
+    assert_eq!(v3.data, vec![-2.0, 4.0, -2.0]);
+    assert_eq!(v3.data.len(), 3);
+}
+
+#[test]
+#[should_panic]
+fn test_cross_vectors_panic() {
+    let v1 = linear_algebra::Vector::new(3);
+    let v2 = linear_algebra::Vector::new(4);
+
+    let _v3 = linear_algebra::Vector::cross(&v1, &v2);
+}
