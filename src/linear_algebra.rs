@@ -97,5 +97,20 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn cross(v1: &Vector, v2: &Vector) -> Vector {
+            // Check for same size
+            // If not, return an error
+            assert_eq!(v1.size, v2.size, "Vectors must be of the same size!");
+
+            let mut result = Vector::new(v1.size);
+
+            for i in 0..v1.size {
+                result.data[i] = v1.data[(i + 1) % v1.size] * v2.data[(i + 2) % v1.size]
+                    - v1.data[(i + 2) % v1.size] * v2.data[(i + 1) % v1.size];
+            }
+
+            return result;
+        }
     }
 }
