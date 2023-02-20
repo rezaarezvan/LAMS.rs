@@ -156,3 +156,23 @@ fn test_matrix_new() {
     assert_eq!(m.data.len(), 3);
     assert_eq!(m.data[0].len(), 3);
 }
+
+#[test]
+fn test_set_matrix() {
+    let mut m = linear_algebra::Matrix::new(3, 3);
+
+    m.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    assert_eq!(m.rows, 3);
+    assert_eq!(m.cols, 3);
+    assert_eq!(
+        m.data,
+        vec![
+            vec![1.0, 2.0, 3.0],
+            vec![4.0, 5.0, 6.0],
+            vec![7.0, 8.0, 9.0]
+        ]
+    );
+    assert_eq!(m.data.len(), 3);
+    assert_eq!(m.data[0].len(), 3);
+}
