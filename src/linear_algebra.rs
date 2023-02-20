@@ -130,5 +130,20 @@ pub mod linear_algebra {
                 data: vec![vec![0.0; cols]; rows],
             }
         }
+
+        pub fn set(&mut self, data: Vec<f64>) {
+            assert_eq!(
+                self.rows * self.cols,
+                data.len(),
+                "Matrix size must be equal to list size!"
+            );
+
+            for i in 0..data.len() {
+                let row = i / self.cols;
+                let col = i % self.cols;
+
+                self.data[row][col] = data[i];
+            }
+        }
     }
 }
