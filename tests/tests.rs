@@ -146,3 +146,13 @@ fn test_cross_vectors_panic() {
 
     let _v3 = linear_algebra::Vector::cross(&v1, &v2);
 }
+
+#[test]
+fn test_matrix_new() {
+    let m = linear_algebra::Matrix::new(3, 3);
+    assert_eq!(m.rows, 3);
+    assert_eq!(m.cols, 3);
+    assert_eq!(m.data, vec![vec![0.0; 3]; 3]);
+    assert_eq!(m.data.len(), 3);
+    assert_eq!(m.data[0].len(), 3);
+}
