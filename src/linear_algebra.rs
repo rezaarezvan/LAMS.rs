@@ -145,5 +145,25 @@ pub mod linear_algebra {
                 self.data[row][col] = data[i];
             }
         }
+
+        pub fn add(a: &Matrix, b: &Matrix) -> Matrix {
+            // Check so that `a` and `b` are of the same size
+
+            assert_eq!(
+                (a.rows, a.cols),
+                (b.rows, b.cols),
+                "Matrices must be of the same size!"
+            );
+
+            let mut result = Matrix::new(a.rows, a.cols);
+
+            for i in 0..a.rows {
+                for j in 0..a.cols {
+                    result.data[i][j] = a.data[i][j] + b.data[i][j];
+                }
+            }
+
+            return result;
+        }
     }
 }
