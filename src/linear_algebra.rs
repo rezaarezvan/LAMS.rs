@@ -185,5 +185,26 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn mul(a: &Matrix, b: &Matrix) -> Matrix {
+            // Check so that `a` and `b` are of the same size
+
+            assert_eq!(
+                a.cols, b.rows,
+                "Number of columns in `a` must be equal to number of rows in `b`!"
+            );
+
+            let mut result = Matrix::new(a.rows, b.cols);
+
+            for i in 0..a.rows {
+                for j in 0..b.cols {
+                    for k in 0..a.cols {
+                        result.data[i][j] += a.data[i][k] * b.data[k][j];
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }
