@@ -209,3 +209,36 @@ fn test_add_matrices_panic() {
 
     let _m3 = linear_algebra::Matrix::add(&m1, &m2);
 }
+
+#[test]
+fn test_sub_matrices() {
+    let mut m1 = linear_algebra::Matrix::new(3, 3);
+    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let mut m2 = linear_algebra::Matrix::new(3, 3);
+    m2.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let m3 = linear_algebra::Matrix::sub(&m1, &m2);
+    assert_eq!(m3.rows, 3);
+    assert_eq!(m3.cols, 3);
+
+    assert_eq!(
+        m3.data,
+        vec![
+            vec![0.0, 0.0, 0.0],
+            vec![0.0, 0.0, 0.0],
+            vec![0.0, 0.0, 0.0]
+        ]
+    );
+
+    assert_eq!(m3.data.len(), 3);
+}
+
+#[test]
+#[should_panic]
+fn test_sub_matrices_panic() {
+    let m1 = linear_algebra::Matrix::new(3, 3);
+    let m2 = linear_algebra::Matrix::new(4, 4);
+
+    let _m3 = linear_algebra::Matrix::sub(&m1, &m2);
+}
