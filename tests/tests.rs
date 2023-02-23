@@ -200,3 +200,12 @@ fn test_add_matrices() {
 
     assert_eq!(m3.data.len(), 3);
 }
+
+#[test]
+#[should_panic]
+fn test_add_matrices_panic() {
+    let m1 = linear_algebra::Matrix::new(3, 3);
+    let m2 = linear_algebra::Matrix::new(4, 4);
+
+    let _m3 = linear_algebra::Matrix::add(&m1, &m2);
+}
