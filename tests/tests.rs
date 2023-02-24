@@ -346,3 +346,21 @@ fn test_matrix_transpose() {
     assert_eq!(m4.cols, 3);
     assert_eq!(m4.data, vec![vec![1.0, 3.0, 5.0], vec![2.0, 4.0, 6.0]]);
 }
+
+#[test]
+pub fn test_matrix_fill() {
+    let mut m1 = linear_algebra::Matrix::new(3, 3);
+
+    m1.matrix_fill(1.0);
+
+    assert_eq!(m1.rows, 3);
+    assert_eq!(m1.cols, 3);
+    assert_eq!(
+        m1.data,
+        vec![
+            vec![1.0, 1.0, 1.0],
+            vec![1.0, 1.0, 1.0],
+            vec![1.0, 1.0, 1.0]
+        ]
+    );
+}
