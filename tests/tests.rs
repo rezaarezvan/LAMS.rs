@@ -293,3 +293,27 @@ fn test_mul_matrices_panic() {
 
     let _m3 = linear_algebra::Matrix::mul(&m1, &m2);
 }
+
+#[test]
+fn test_matrix_vector_mul() {
+    let mut m1 = linear_algebra::Matrix::new(3, 3);
+    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let mut v1 = linear_algebra::Vector::new(3);
+    v1.set(vec![1.0, 2.0, 3.0]);
+
+    let m2 = linear_algebra::Matrix::matrix_vector_mul(&m1, &v1);
+
+    assert_eq!(m2.rows, 3);
+    assert_eq!(m2.cols, 1);
+    assert_eq!(m2.data, vec![vec![14.0], vec![32.0], vec![50.0]]);
+}
+
+#[test]
+#[should_panic]
+fn test_matrix_vector_mul_panic() {
+    let m1 = linear_algebra::Matrix::new(3, 3);
+    let v1 = linear_algebra::Vector::new(4);
+
+    let _m2 = linear_algebra::Matrix::matrix_vector_mul(&m1, &v1);
+}
