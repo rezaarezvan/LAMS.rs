@@ -22,7 +22,7 @@ pub mod linear_algebra {
             }
         }
 
-        pub fn set(&mut self, list: Vec<f64>) {
+        pub fn vector_set(&mut self, list: Vec<f64>) {
             assert_eq!(
                 self.size,
                 list.len(),
@@ -31,7 +31,7 @@ pub mod linear_algebra {
             self.data = list;
         }
 
-        pub fn add(&self, other: &Vector) -> Vector {
+        pub fn vector_add(&self, other: &Vector) -> Vector {
             // Check so that the vectors are of the same size
             // If not, return an error
             assert_eq!(self.size, other.size, "Vectors must be of the same size!");
@@ -45,7 +45,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn sub(&self, other: &Vector) -> Vector {
+        pub fn vector_sub(&self, other: &Vector) -> Vector {
             // Check so that the vectors are of the same size
             // If not, return an error
             assert_eq!(self.size, other.size, "Vectors must be of the same size!");
@@ -59,7 +59,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn scale(&self, scalar: f64) -> Vector {
+        pub fn vector_scale(&self, scalar: f64) -> Vector {
             let mut result = Vector::new(self.size);
 
             for i in 0..self.size {
@@ -69,7 +69,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn dot(v1: &Vector, v2: &Vector) -> f64 {
+        pub fn vector_dot(v1: &Vector, v2: &Vector) -> f64 {
             // Check for same size
             // If not, return an error
             assert_eq!(v1.size, v2.size, "Vectors must be of the same size!");
@@ -83,7 +83,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn norm(v: &Vector) -> f64 {
+        pub fn vector_norm(v: &Vector) -> f64 {
             let mut result: f64 = 0.0;
 
             for i in 0..v.size {
@@ -93,10 +93,10 @@ pub mod linear_algebra {
             return result.sqrt();
         }
 
-        pub fn normalize(v: &Vector) -> Vector {
+        pub fn vector_normalize(v: &Vector) -> Vector {
             let mut result = Vector::new(v.size);
 
-            let norm = Vector::norm(v);
+            let norm = Vector::vector_norm(v);
 
             for i in 0..v.size {
                 result.data[i] = v.data[i] / norm;
@@ -105,7 +105,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn cross(v1: &Vector, v2: &Vector) -> Vector {
+        pub fn vector_cross(v1: &Vector, v2: &Vector) -> Vector {
             // Check for same size
             // If not, return an error
             assert_eq!(v1.size, v2.size, "Vectors must be of the same size!");
