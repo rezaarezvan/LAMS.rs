@@ -131,7 +131,7 @@ pub mod linear_algebra {
             }
         }
 
-        pub fn set(&mut self, data: Vec<f64>) {
+        pub fn matrix_set(&mut self, data: Vec<f64>) {
             assert_eq!(
                 self.rows * self.cols,
                 data.len(),
@@ -146,7 +146,7 @@ pub mod linear_algebra {
             }
         }
 
-        pub fn add(a: &Matrix, b: &Matrix) -> Matrix {
+        pub fn matrix_add(a: &Matrix, b: &Matrix) -> Matrix {
             // Check so that `a` and `b` are of the same size
 
             assert_eq!(
@@ -166,7 +166,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn sub(a: &Matrix, b: &Matrix) -> Matrix {
+        pub fn matrix_sub(a: &Matrix, b: &Matrix) -> Matrix {
             // Check so that `a` and `b` are of the same size
 
             assert_eq!(
@@ -186,7 +186,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn scale(m: &Matrix, s: f64) -> Matrix {
+        pub fn matrix_scale(m: &Matrix, s: f64) -> Matrix {
             let mut result = Matrix::new(m.rows, m.cols);
 
             for i in 0..m.rows {
@@ -198,7 +198,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn mul(a: &Matrix, b: &Matrix) -> Matrix {
+        pub fn matrix_mul(a: &Matrix, b: &Matrix) -> Matrix {
             // Check so that `a` and `b` are of the same size
 
             assert_eq!(

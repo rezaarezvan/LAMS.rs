@@ -161,7 +161,7 @@ fn test_matrix_new() {
 fn test_set_matrix() {
     let mut m = linear_algebra::Matrix::new(3, 3);
 
-    m.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
     assert_eq!(m.rows, 3);
     assert_eq!(m.cols, 3);
@@ -180,12 +180,12 @@ fn test_set_matrix() {
 #[test]
 fn test_add_matrices() {
     let mut m1 = linear_algebra::Matrix::new(3, 3);
-    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m1.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
     let mut m2 = linear_algebra::Matrix::new(3, 3);
-    m2.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m2.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
-    let m3 = linear_algebra::Matrix::add(&m1, &m2);
+    let m3 = linear_algebra::Matrix::matrix_add(&m1, &m2);
     assert_eq!(m3.rows, 3);
     assert_eq!(m3.cols, 3);
 
@@ -207,18 +207,18 @@ fn test_add_matrices_panic() {
     let m1 = linear_algebra::Matrix::new(3, 3);
     let m2 = linear_algebra::Matrix::new(4, 4);
 
-    let _m3 = linear_algebra::Matrix::add(&m1, &m2);
+    let _m3 = linear_algebra::Matrix::matrix_add(&m1, &m2);
 }
 
 #[test]
 fn test_sub_matrices() {
     let mut m1 = linear_algebra::Matrix::new(3, 3);
-    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m1.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
     let mut m2 = linear_algebra::Matrix::new(3, 3);
-    m2.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m2.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
-    let m3 = linear_algebra::Matrix::sub(&m1, &m2);
+    let m3 = linear_algebra::Matrix::matrix_sub(&m1, &m2);
     assert_eq!(m3.rows, 3);
     assert_eq!(m3.cols, 3);
 
@@ -240,15 +240,15 @@ fn test_sub_matrices_panic() {
     let m1 = linear_algebra::Matrix::new(3, 3);
     let m2 = linear_algebra::Matrix::new(4, 4);
 
-    let _m3 = linear_algebra::Matrix::sub(&m1, &m2);
+    let _m3 = linear_algebra::Matrix::matrix_sub(&m1, &m2);
 }
 
 #[test]
 fn test_scale_matrix() {
     let mut m1 = linear_algebra::Matrix::new(3, 3);
-    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m1.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
-    let m2 = linear_algebra::Matrix::scale(&m1, 2.0);
+    let m2 = linear_algebra::Matrix::matrix_scale(&m1, 2.0);
 
     assert_eq!(m2.rows, 3);
     assert_eq!(m2.cols, 3);
@@ -266,12 +266,12 @@ fn test_scale_matrix() {
 #[test]
 fn test_mul_matrices() {
     let mut m1 = linear_algebra::Matrix::new(3, 3);
-    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m1.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
     let mut m2 = linear_algebra::Matrix::new(3, 3);
-    m2.set(vec![-1.0, 2.0, -3.0, 4.0, -5.0, 6.0, -7.0, 8.0, -9.0]);
+    m2.matrix_set(vec![-1.0, 2.0, -3.0, 4.0, -5.0, 6.0, -7.0, 8.0, -9.0]);
 
-    let m3 = linear_algebra::Matrix::mul(&m1, &m2);
+    let m3 = linear_algebra::Matrix::matrix_mul(&m1, &m2);
 
     assert_eq!(m3.rows, 3);
     assert_eq!(m3.cols, 3);
@@ -291,13 +291,13 @@ fn test_mul_matrices_panic() {
     let m1 = linear_algebra::Matrix::new(3, 3);
     let m2 = linear_algebra::Matrix::new(4, 4);
 
-    let _m3 = linear_algebra::Matrix::mul(&m1, &m2);
+    let _m3 = linear_algebra::Matrix::matrix_mul(&m1, &m2);
 }
 
 #[test]
 fn test_matrix_vector_mul() {
     let mut m1 = linear_algebra::Matrix::new(3, 3);
-    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m1.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
     let mut v1 = linear_algebra::Vector::new(3);
     v1.vector_set(vec![1.0, 2.0, 3.0]);
@@ -321,7 +321,7 @@ fn test_matrix_vector_mul_panic() {
 #[test]
 fn test_matrix_transpose() {
     let mut m1 = linear_algebra::Matrix::new(3, 3);
-    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+    m1.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
 
     let m2 = linear_algebra::Matrix::matrix_transpose(&m1);
 
@@ -338,7 +338,7 @@ fn test_matrix_transpose() {
 
     // Test a non-square matrix
     let mut m3 = linear_algebra::Matrix::new(3, 2);
-    m3.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+    m3.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
 
     let m4 = linear_algebra::Matrix::matrix_transpose(&m3);
 
