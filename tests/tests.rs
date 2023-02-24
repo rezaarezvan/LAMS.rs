@@ -317,3 +317,32 @@ fn test_matrix_vector_mul_panic() {
 
     let _m2 = linear_algebra::Matrix::matrix_vector_mul(&m1, &v1);
 }
+
+#[test]
+fn test_matrix_transpose() {
+    let mut m1 = linear_algebra::Matrix::new(3, 3);
+    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let m2 = linear_algebra::Matrix::matrix_transpose(&m1);
+
+    assert_eq!(m2.rows, 3);
+    assert_eq!(m2.cols, 3);
+    assert_eq!(
+        m2.data,
+        vec![
+            vec![1.0, 4.0, 7.0],
+            vec![2.0, 5.0, 8.0],
+            vec![3.0, 6.0, 9.0]
+        ]
+    );
+
+    // Test a non-square matrix
+    let mut m3 = linear_algebra::Matrix::new(3, 2);
+    m3.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0]);
+
+    let m4 = linear_algebra::Matrix::matrix_transpose(&m3);
+
+    assert_eq!(m4.rows, 2);
+    assert_eq!(m4.cols, 3);
+    assert_eq!(m4.data, vec![vec![1.0, 3.0, 5.0], vec![2.0, 4.0, 6.0]]);
+}
