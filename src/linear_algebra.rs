@@ -247,5 +247,13 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn matrix_fill(&mut self, value: f64) -> () {
+            for i in 0..self.rows {
+                for j in 0..self.cols {
+                    self.data[i][j] = value;
+                }
+            }
+        }
     }
 }
