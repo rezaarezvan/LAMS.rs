@@ -235,5 +235,17 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn matrix_transpose(m: &Matrix) -> Matrix {
+            let mut result = Matrix::new(m.cols, m.rows);
+
+            for i in 0..m.rows {
+                for j in 0..m.cols {
+                    result.data[j][i] = m.data[i][j];
+                }
+            }
+
+            return result;
+        }
     }
 }
