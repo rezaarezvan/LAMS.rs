@@ -244,6 +244,26 @@ fn test_sub_matrices_panic() {
 }
 
 #[test]
+fn test_scale_matrix() {
+    let mut m1 = linear_algebra::Matrix::new(3, 3);
+    m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let m2 = linear_algebra::Matrix::scale(&m1, 2.0);
+
+    assert_eq!(m2.rows, 3);
+    assert_eq!(m2.cols, 3);
+    assert_eq!(
+        m2.data,
+        vec![
+            vec![2.0, 4.0, 6.0],
+            vec![8.0, 10.0, 12.0],
+            vec![14.0, 16.0, 18.0]
+        ]
+    );
+    assert_eq!(m2.data.len(), 3);
+}
+
+#[test]
 fn test_mul_matrices() {
     let mut m1 = linear_algebra::Matrix::new(3, 3);
     m1.set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
