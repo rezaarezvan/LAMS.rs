@@ -186,6 +186,18 @@ pub mod linear_algebra {
             return result;
         }
 
+        pub fn scale(m: &Matrix, s: f64) -> Matrix {
+            let mut result = Matrix::new(m.rows, m.cols);
+
+            for i in 0..m.rows {
+                for j in 0..m.cols {
+                    result.data[i][j] = m.data[i][j] * s;
+                }
+            }
+
+            return result;
+        }
+
         pub fn mul(a: &Matrix, b: &Matrix) -> Matrix {
             // Check so that `a` and `b` are of the same size
 
