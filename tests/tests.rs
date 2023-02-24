@@ -34,7 +34,7 @@ fn test_add_vectors() {
     v1.vector_set(vec![1.0, 2.0, 3.0]);
     v2.vector_set(vec![3.0, 4.0, 5.0]);
 
-    let v3 = v1.vector_add(&v2);
+    let v3 = linear_algebra::Vector::vector_add(&v1, &v2);
     assert_eq!(v3.size, 3);
     assert_eq!(v3.data, vec![4.0, 6.0, 8.0]);
     assert_eq!(v3.data.len(), 3);
@@ -46,7 +46,7 @@ fn test_add_vectors_panic() {
     let v1 = linear_algebra::Vector::new(3);
     let v2 = linear_algebra::Vector::new(4);
 
-    let _v3 = v1.vector_add(&v2);
+    let _v3 = linear_algebra::Vector::vector_add(&v1, &v2);
 }
 
 #[test]
@@ -54,7 +54,7 @@ fn test_sub_vectors() {
     let v1 = linear_algebra::Vector::new(3);
     let v2 = linear_algebra::Vector::new(3);
 
-    let v3 = v1.vector_sub(&v2);
+    let v3 = linear_algebra::Vector::vector_sub(&v1, &v2);
     assert_eq!(v3.size, 3);
     assert_eq!(v3.data, vec![0.0; 3]);
     assert_eq!(v3.data.len(), 3);
@@ -66,7 +66,7 @@ fn test_sub_vectors_panic() {
     let v1 = linear_algebra::Vector::new(3);
     let v2 = linear_algebra::Vector::new(4);
 
-    let _v3 = v1.vector_sub(&v2);
+    let _v3 = linear_algebra::Vector::vector_sub(&v1, &v2);
 }
 
 #[test]
@@ -74,7 +74,7 @@ fn test_scale_vector() {
     let mut v1 = linear_algebra::Vector::new(3);
     v1.vector_set(vec![1.0, 2.0, 3.0]);
 
-    let v2 = v1.vector_scale(2.0);
+    let v2 = linear_algebra::Vector::vector_scale(&v1, 2.0);
     assert_eq!(v2.size, 3);
     assert_eq!(v2.data, vec![2.0, 4.0, 6.0]);
     assert_eq!(v2.data.len(), 3);

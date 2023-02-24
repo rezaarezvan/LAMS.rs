@@ -31,39 +31,39 @@ pub mod linear_algebra {
             self.data = list;
         }
 
-        pub fn vector_add(&self, other: &Vector) -> Vector {
+        pub fn vector_add(v: &Vector, u: &Vector) -> Vector {
             // Check so that the vectors are of the same size
             // If not, return an error
-            assert_eq!(self.size, other.size, "Vectors must be of the same size!");
+            assert_eq!(v.size, u.size, "Vectors must be of the same size!");
 
-            let mut result = Vector::new(self.size);
+            let mut result = Vector::new(v.size);
 
-            for i in 0..self.size {
-                result.data[i] = self.data[i] + other.data[i];
+            for i in 0..v.size {
+                result.data[i] = v.data[i] + u.data[i];
             }
 
             return result;
         }
 
-        pub fn vector_sub(&self, other: &Vector) -> Vector {
+        pub fn vector_sub(v: &Vector, u: &Vector) -> Vector {
             // Check so that the vectors are of the same size
             // If not, return an error
-            assert_eq!(self.size, other.size, "Vectors must be of the same size!");
+            assert_eq!(v.size, u.size, "Vectors must be of the same size!");
 
-            let mut result = Vector::new(self.size);
+            let mut result = Vector::new(v.size);
 
-            for i in 0..self.size {
-                result.data[i] = self.data[i] - other.data[i];
+            for i in 0..v.size {
+                result.data[i] = v.data[i] - u.data[i];
             }
 
             return result;
         }
 
-        pub fn vector_scale(&self, scalar: f64) -> Vector {
-            let mut result = Vector::new(self.size);
+        pub fn vector_scale(v: &Vector, scalar: f64) -> Vector {
+            let mut result = Vector::new(v.size);
 
-            for i in 0..self.size {
-                result.data[i] = self.data[i] * scalar;
+            for i in 0..v.size {
+                result.data[i] = v.data[i] * scalar;
             }
 
             return result;
