@@ -218,5 +218,22 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn matrix_vector_mul(m: &Matrix, v: &Vector) -> Matrix {
+            assert_eq!(
+                m.cols, v.size,
+                "Number of columns in `m` must be equal to number of rows in `v`!"
+            );
+
+            let mut result = Matrix::new(m.rows, 1);
+
+            for i in 0..m.rows {
+                for j in 0..m.cols {
+                    result.data[i][0] += m.data[i][j] * v.data[j];
+                }
+            }
+
+            return result;
+        }
     }
 }
