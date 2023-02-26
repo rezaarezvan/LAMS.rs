@@ -1,3 +1,3 @@
-use LAMS_rs::linear_algebra;
+use LAMS_rs::linear_algebra::*;
 
 pub fn main() {}
