@@ -273,5 +273,25 @@ pub mod linear_algebra {
                 data: vec![Matrix::new(rows, cols); rank],
             }
         }
+
+        pub fn tensor_set(&mut self, data: Vec<Matrix>) {
+            assert_eq!(
+                self.rank,
+                data.len(),
+                "Tensor rank must be equal to list size!"
+            );
+
+            self.data = data;
+        }
+
+        pub fn tensor_insert(&mut self, data: Matrix, index: usize) {
+            assert_eq!(
+                (self.rows, self.cols),
+                (data.rows, data.cols),
+                "Matrix size must be equal to tensor size!"
+            );
+
+            self.data[index] = data;
+        }
     }
 }
