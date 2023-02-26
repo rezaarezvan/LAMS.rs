@@ -48,9 +48,12 @@ pub mod linear_algebra {
 
             let mut result = Vector::new(v.size);
 
-            for i in 0..v.size {
-                result.data[i] = v.data[i] + u.data[i];
-            }
+            result.data = v
+                .data
+                .iter()
+                .zip(u.data.iter())
+                .map(|(&x, &y)| x + y)
+                .collect();
 
             return result;
         }
@@ -62,9 +65,12 @@ pub mod linear_algebra {
 
             let mut result = Vector::new(v.size);
 
-            for i in 0..v.size {
-                result.data[i] = v.data[i] - u.data[i];
-            }
+            result.data = v
+                .data
+                .iter()
+                .zip(u.data.iter())
+                .map(|(&x, &y)| x - y)
+                .collect();
 
             return result;
         }
@@ -72,9 +78,7 @@ pub mod linear_algebra {
         pub fn vector_scale(v: &Vector, scalar: f64) -> Vector {
             let mut result = Vector::new(v.size);
 
-            for i in 0..v.size {
-                result.data[i] = v.data[i] * scalar;
-            }
+            result.data = v.data.iter().map(|&x| x * scalar).collect();
 
             return result;
         }
@@ -84,21 +88,22 @@ pub mod linear_algebra {
             // If not, return an error
             assert_eq!(v1.size, v2.size, "Vectors must be of the same size!");
 
-            let mut result: f64 = 0.0;
+            let result: f64;
 
-            for i in 0..v1.size {
-                result += v1.data[i] * v2.data[i];
-            }
+            result = v1
+                .data
+                .iter()
+                .zip(v2.data.iter())
+                .map(|(&x, &y)| x * y)
+                .sum();
 
             return result;
         }
 
         pub fn vector_norm(v: &Vector) -> f64 {
-            let mut result: f64 = 0.0;
+            let result: f64;
 
-            for i in 0..v.size {
-                result += v.data[i] * v.data[i];
-            }
+            result = v.data.iter().map(|&x| x * x).sum();
 
             return result.sqrt();
         }
@@ -108,9 +113,7 @@ pub mod linear_algebra {
 
             let norm = Vector::vector_norm(v);
 
-            for i in 0..v.size {
-                result.data[i] = v.data[i] / norm;
-            }
+            result.data = v.data.iter().map(|&x| x / norm).collect();
 
             return result;
         }
@@ -164,11 +167,12 @@ pub mod linear_algebra {
 
             let mut result = Matrix::new(a.rows, a.cols);
 
-            for i in 0..a.rows {
-                for j in 0..a.cols {
-                    result.data[i][j] = a.data[i][j] + b.data[i][j];
-                }
-            }
+            result.data = a
+                .data
+                .iter()
+                .zip(b.data.iter())
+                .map(|(x, y)| x.iter().zip(y.iter()).map(|(&x, &y)| x + y).collect())
+                .collect();
 
             return result;
         }
@@ -184,11 +188,12 @@ pub mod linear_algebra {
 
             let mut result = Matrix::new(a.rows, a.cols);
 
-            for i in 0..a.rows {
-                for j in 0..a.cols {
-                    result.data[i][j] = a.data[i][j] - b.data[i][j];
-                }
-            }
+            result.data = a
+                .data
+                .iter()
+                .zip(b.data.iter())
+                .map(|(x, y)| x.iter().zip(y.iter()).map(|(&x, &y)| x - y).collect())
+                .collect();
 
             return result;
         }
@@ -196,11 +201,11 @@ pub mod linear_algebra {
         pub fn matrix_scale(m: &Matrix, s: f64) -> Matrix {
             let mut result = Matrix::new(m.rows, m.cols);
 
-            for i in 0..m.rows {
-                for j in 0..m.cols {
-                    result.data[i][j] = m.data[i][j] * s;
-                }
-            }
+            result.data = m
+                .data
+                .iter()
+                .map(|x| x.iter().map(|&x| x * s).collect())
+                .collect();
 
             return result;
         }
@@ -256,11 +261,11 @@ pub mod linear_algebra {
         }
 
         pub fn matrix_fill(&mut self, value: f64) {
-            for i in 0..self.rows {
-                for j in 0..self.cols {
-                    self.data[i][j] = value;
-                }
-            }
+            self.data = self
+                .data
+                .iter()
+                .map(|x| x.iter().map(|_| value).collect())
+                .collect();
         }
     }
 
