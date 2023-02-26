@@ -266,4 +266,15 @@ pub mod linear_algebra {
             }
         }
     }
+
+    impl Tensor {
+        pub fn tensor_new(rank: usize, rows: usize, cols: usize) -> Tensor {
+            Tensor {
+                rank,
+                rows,
+                cols,
+                data: vec![Matrix::new(rows, cols); rank],
+            }
+        }
+    }
 }
