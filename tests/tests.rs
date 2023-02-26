@@ -385,3 +385,33 @@ pub fn test_tensor_new() {
         );
     }
 }
+
+#[test]
+pub fn test_tensor_set() {
+    let mut t1 = linear_algebra::Tensor::tensor_new(3, 3, 3);
+
+    let mut m1 = linear_algebra::Matrix::new(3, 3);
+    m1.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let mut m2 = linear_algebra::Matrix::new(3, 3);
+    m2.matrix_set(vec![9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0]);
+
+    let mut m3 = linear_algebra::Matrix::new(3, 3);
+    m3.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let mv = vec![m1, m2, m3];
+
+    let clone = mv.clone();
+
+    t1.tensor_set(clone);
+
+    assert_eq!(t1.rank, 3);
+    assert_eq!(t1.rows, 3);
+    assert_eq!(t1.cols, 3);
+
+    // Check that each 3 x 3 corresponds to the correct matrix
+
+    for i in 0..t1.rank {
+        assert_eq!(t1.data[i].data, mv[i].data);
+    }
+}
