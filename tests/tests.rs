@@ -364,3 +364,24 @@ pub fn test_matrix_fill() {
         ]
     );
 }
+
+#[test]
+pub fn test_tensor_new() {
+    let t1 = linear_algebra::Tensor::tensor_new(3, 3, 3);
+
+    assert_eq!(t1.rank, 3);
+    assert_eq!(t1.rows, 3);
+    assert_eq!(t1.cols, 3);
+
+    // Check that each 3 x 3 matrix is filled with 0.0
+    for i in 0..t1.rank {
+        assert_eq!(
+            t1.data[i].data,
+            vec![
+                vec![0.0, 0.0, 0.0],
+                vec![0.0, 0.0, 0.0],
+                vec![0.0, 0.0, 0.0]
+            ]
+        );
+    }
+}
