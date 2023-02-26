@@ -298,5 +298,24 @@ pub mod linear_algebra {
 
             self.data[index] = data;
         }
+
+        pub fn tensor_add(a: &Tensor, b: &Tensor) -> Tensor {
+            assert_eq!(
+                (a.rank, a.rows, a.cols),
+                (b.rank, b.rows, b.cols),
+                "Tensors must be of the same size!"
+            );
+
+            let mut result = Tensor::tensor_new(a.rank, a.rows, a.cols);
+
+            result.data = a
+                .data
+                .iter()
+                .zip(b.data.iter())
+                .map(|(x, y)| Matrix::matrix_add(x, y))
+                .collect();
+
+            return result;
+        }
     }
 }
