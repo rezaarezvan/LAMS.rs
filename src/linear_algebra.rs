@@ -2,15 +2,25 @@
 
 pub mod linear_algebra {
 
+    #[derive(Debug, Clone)]
     pub struct Vector {
         pub size: usize,
         pub data: Vec<f64>,
     }
 
+    #[derive(Debug, Clone)]
     pub struct Matrix {
         pub rows: usize,
         pub cols: usize,
         pub data: Vec<Vec<f64>>,
+    }
+
+    #[derive(Debug, Clone)]
+    pub struct Tensor {
+        pub rank: usize,
+        pub rows: usize,
+        pub cols: usize,
+        pub data: Vec<Matrix>,
     }
 
     /* Vector functions */
