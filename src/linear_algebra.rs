@@ -148,12 +148,9 @@ pub mod linear_algebra {
                 "Matrix size must be equal to list size!"
             );
 
-            for i in 0..data.len() {
-                let row = i / self.cols;
-                let col = i % self.cols;
-
-                self.data[row][col] = data[i];
-            }
+            data.iter()
+                .enumerate()
+                .for_each(|(i, &x)| self.data[i / self.cols][i % self.cols] = x);
         }
 
         pub fn matrix_add(a: &Matrix, b: &Matrix) -> Matrix {
@@ -258,7 +255,7 @@ pub mod linear_algebra {
             return result;
         }
 
-        pub fn matrix_fill(&mut self, value: f64) -> () {
+        pub fn matrix_fill(&mut self, value: f64) {
             for i in 0..self.rows {
                 for j in 0..self.cols {
                     self.data[i][j] = value;
