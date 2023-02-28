@@ -401,9 +401,7 @@ pub fn test_tensor_set() {
 
     let mv = vec![m1, m2, m3];
 
-    let clone = mv.clone();
-
-    t1.tensor_set(clone);
+    t1.tensor_set(&mv);
 
     assert_eq!(t1.rank, 3);
     assert_eq!(t1.rows, 3);
@@ -428,7 +426,7 @@ pub fn test_tensor_set_panic() {
 
     let mv = vec![m1, m2, m3, m4];
 
-    t1.tensor_set(mv);
+    t1.tensor_set(&mv);
 }
 
 #[test]
@@ -488,9 +486,7 @@ pub fn test_tensor_add() {
 
     let mv1 = vec![m1, m2, m3];
 
-    let clone1 = mv1.clone();
-
-    t1.tensor_set(clone1);
+    t1.tensor_set(&mv1);
 
     let mut t2 = linear_algebra::Tensor::tensor_new(3, 3, 3);
 
@@ -505,9 +501,7 @@ pub fn test_tensor_add() {
 
     let mv2 = vec![m4, m5, m6];
 
-    let clone2 = mv2.clone();
-
-    t2.tensor_set(clone2);
+    t2.tensor_set(&mv2);
 
     let expected = mv1
         .iter()
@@ -551,9 +545,7 @@ pub fn test_tensor_sub() {
 
     let mv1 = vec![m1, m2, m3];
 
-    let clone1 = mv1.clone();
-
-    t1.tensor_set(clone1);
+    t1.tensor_set(&mv1);
 
     let mut t2 = linear_algebra::Tensor::tensor_new(3, 3, 3);
 
@@ -568,9 +560,7 @@ pub fn test_tensor_sub() {
 
     let mv2 = vec![m4, m5, m6];
 
-    let clone2 = mv2.clone();
-
-    t2.tensor_set(clone2);
+    t2.tensor_set(&mv2);
 
     let expected = mv1
         .iter()
@@ -617,9 +607,7 @@ pub fn test_tensor_scale() {
 
     let mv1 = vec![m1, m2, m3];
 
-    let clone1 = mv1.clone();
-
-    t1.tensor_set(clone1);
+    t1.tensor_set(&mv1);
 
     let expected = mv1
         .iter()
