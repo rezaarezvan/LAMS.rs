@@ -526,3 +526,12 @@ pub fn test_tensor_add() {
         assert_eq!(t3.data[i].data, expected[i].data);
     }
 }
+
+#[test]
+#[should_panic]
+pub fn test_tensor_add_panic() {
+    let t1 = linear_algebra::Tensor::tensor_new(3, 3, 3);
+    let t2 = linear_algebra::Tensor::tensor_new(4, 3, 3);
+
+    linear_algebra::Tensor::tensor_add(&t1, &t2);
+}
