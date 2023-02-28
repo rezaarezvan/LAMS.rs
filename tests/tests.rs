@@ -598,3 +598,43 @@ pub fn test_tensor_sub_panic() {
 
     linear_algebra::Tensor::tensor_sub(&t1, &t2);
 }
+
+#[test]
+pub fn test_tensor_scale() {
+    let mut t1 = linear_algebra::Tensor::tensor_new(3, 3, 3);
+
+    let mut m1 = linear_algebra::Matrix::new(3, 3);
+
+    m1.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let mut m2 = linear_algebra::Matrix::new(3, 3);
+
+    m2.matrix_set(vec![9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0]);
+
+    let mut m3 = linear_algebra::Matrix::new(3, 3);
+
+    m3.matrix_set(vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]);
+
+    let mv1 = vec![m1, m2, m3];
+
+    let clone1 = mv1.clone();
+
+    t1.tensor_set(clone1);
+
+    let expected = mv1
+        .iter()
+        .map(|a| linear_algebra::Matrix::matrix_scale(a, 2.0))
+        .collect::<Vec<_>>();
+
+    let t2 = linear_algebra::Tensor::tensor_scale(&t1, 2.0);
+
+    assert_eq!(t2.rank, 3);
+    assert_eq!(t2.rows, 3);
+    assert_eq!(t2.cols, 3);
+
+    // Check that each 3 x 3 corresponds to the correct matrix_scaled
+
+    for i in 0..t2.rank {
+        assert_eq!(t2.data[i].data, expected[i].data);
+    }
+}
