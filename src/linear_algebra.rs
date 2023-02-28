@@ -279,14 +279,14 @@ pub mod linear_algebra {
             }
         }
 
-        pub fn tensor_set(&mut self, data: Vec<Matrix>) {
+        pub fn tensor_set(&mut self, data: &Vec<Matrix>) {
             assert_eq!(
                 self.rank,
                 data.len(),
                 "Tensor rank must be equal to list size!"
             );
 
-            self.data = data;
+            self.data = data.clone();
         }
 
         pub fn tensor_insert(&mut self, data: Matrix, index: usize) {
