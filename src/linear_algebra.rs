@@ -336,5 +336,13 @@ pub mod linear_algebra {
 
             return result;
         }
+
+        pub fn tensor_scale(t: &Tensor, s: f64) -> Tensor {
+            let mut result = Tensor::tensor_new(t.rank, t.rows, t.cols);
+
+            result.data = t.data.iter().map(|x| Matrix::matrix_scale(x, s)).collect();
+
+            return result;
+        }
     }
 }
