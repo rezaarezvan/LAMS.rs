@@ -86,12 +86,38 @@ pub mod stats {
     }
 
     impl Bernoulli {
+        pub fn new(p: f64) -> Bernoulli {
+            Bernoulli { p }
+        }
+
+        pub fn pdf(&self, k: u32) -> f64 {
+            match k {
+                0 => 1.0 - self.p,
+                1 => self.p,
+                _ => 0.0,
+            }
+        }
+
+        pub fn cdf(&self, k: u32) -> f64 {
+            if k < 0 {
+                0.0
+            } else if k < 1 {
+                1.0 - self.p
+            } else {
+                1.0
+            }
+        }
+
         pub fn mean(&self) -> f64 {
-            return self.p;
+            self.p
         }
 
         pub fn variance(&self) -> f64 {
-            return self.p * (1.0 - self.p);
+            self.p * (1.0 - self.p)
+        }
+
+        pub fn skewness(&self) -> f64 {
+            (1.0 - self.p - self.p) / ((self.p * (1.0 - self.p)).sqrt())
         }
     }
 }
