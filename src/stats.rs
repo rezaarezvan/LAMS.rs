@@ -84,4 +84,14 @@ pub mod stats {
     pub struct T {
         pub nu: f64,
     }
+
+    impl Bernoulli {
+        pub fn mean(&self) -> f64 {
+            return self.p;
+        }
+
+        pub fn variance(&self) -> f64 {
+            return self.p * (1.0 - self.p);
+        }
+    }
 }
