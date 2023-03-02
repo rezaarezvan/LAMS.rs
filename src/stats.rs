@@ -135,4 +135,48 @@ pub mod stats {
             (1.0 - self.p - self.p) / ((self.p * (1.0 - self.p)).sqrt())
         }
     }
+
+    impl Binomial {
+        pub fn new(n: u32, p: f64) -> Binomial {
+            Binomial { n, p }
+        }
+
+        pub fn pmf(&self, k: u32) -> f64 {
+            if k < 0 || k > self.n {
+                0.0
+            } else {
+                binomial_coefficient(self.n, k) as f64
+                    * self.p.powi(k as i32)
+                    * (1.0 - self.p).powi((self.n - k) as i32)
+            }
+        }
+
+        pub fn cdf(&self, k: u32) -> f64 {
+            if k < 0 {
+                0.0
+            } else if k < self.n {
+                let mut result = 0.0;
+
+                for i in 0..=k {
+                    result += self.pmf(i);
+                }
+
+                result
+            } else {
+                1.0
+            }
+        }
+
+        pub fn mean(&self) -> f64 {
+            self.n as f64 * self.p
+        }
+
+        pub fn variance(&self) -> f64 {
+            self.n as f64 * self.p * (1.0 - self.p)
+        }
+
+        pub fn skewness(&self) -> f64 {
+            ((1.0 - self.p) - self.p) / ((self.n as f64 * self.p * (1.0 - self.p)).sqrt())
+        }
+    }
 }
