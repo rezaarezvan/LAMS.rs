@@ -90,7 +90,7 @@ pub mod stats {
             Bernoulli { p }
         }
 
-        pub fn pdf(&self, k: u32) -> f64 {
+        pub fn pmf(&self, k: u32) -> f64 {
             match k {
                 0 => 1.0 - self.p,
                 1 => self.p,
