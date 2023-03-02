@@ -85,6 +85,19 @@ pub mod stats {
         pub nu: f64,
     }
 
+    // Auxiliary function to calculate the binomial coefficient
+
+    pub fn binomial_coefficient(n: u32, k: u32) -> u32 {
+        let mut result = 1;
+
+        for i in 1..=k {
+            result *= n - k + i;
+            result /= i;
+        }
+
+        return result;
+    }
+
     impl Bernoulli {
         pub fn new(p: f64) -> Bernoulli {
             assert!(p >= 0.0 && p <= 1.0);
