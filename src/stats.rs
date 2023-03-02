@@ -138,6 +138,8 @@ pub mod stats {
 
     impl Binomial {
         pub fn new(n: u32, p: f64) -> Binomial {
+            assert!(p >= 0.0 && p <= 1.0);
+
             Binomial { n, p }
         }
 
