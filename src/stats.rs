@@ -87,6 +87,8 @@ pub mod stats {
 
     impl Bernoulli {
         pub fn new(p: f64) -> Bernoulli {
+            assert!(p >= 0.0 && p <= 1.0);
+
             Bernoulli { p }
         }
 
