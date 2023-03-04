@@ -155,3 +155,16 @@ pub fn test_binomial_skewness() {
     let error = (b.skewness() - expected_skewness).abs();
     assert!(error < epsilon);
 }
+
+#[test]
+pub fn test_discreteuniform_new() {
+    let d = stats::DiscreteUniform::new(0, 10);
+    assert_eq!(d.a, 0);
+    assert_eq!(d.b, 10);
+}
+
+#[test]
+#[should_panic]
+pub fn test_discreteuniform_new_panic() {
+    let d = stats::DiscreteUniform::new(10, 0);
+}
