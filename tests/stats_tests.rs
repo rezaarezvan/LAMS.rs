@@ -75,6 +75,14 @@ pub fn test_binomial_new_panic() {
 }
 
 #[test]
+pub fn test_binomial_coefficient() {
+    assert_eq!(stats::binomial_coefficient(5, 2), 10);
+    assert_eq!(stats::binomial_coefficient(5, 3), 10);
+    assert_eq!(stats::binomial_coefficient(5, 4), 5);
+    assert_eq!(stats::binomial_coefficient(5, 5), 1);
+}
+
+#[test]
 pub fn test_binomial_pmf() {
     let b = stats::Binomial::new(10, 0.3);
 
