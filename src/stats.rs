@@ -181,4 +181,12 @@ pub mod stats {
             ((1.0 - self.p) - self.p) / ((self.n as f64 * self.p * (1.0 - self.p)).sqrt())
         }
     }
+
+    impl DiscreteUniform {
+        pub fn new(a: u32, b: u32) -> DiscreteUniform {
+            assert!(a <= b);
+
+            DiscreteUniform { a, b }
+        }
+    }
 }
