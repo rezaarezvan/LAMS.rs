@@ -136,3 +136,14 @@ pub fn test_binomial_variance() {
 
     assert_eq!(b.variance(), expected_variance);
 }
+
+#[test]
+pub fn test_binomial_skewness() {
+    let b = stats::Binomial::new(10, 0.3);
+
+    let expected_skewness = (1.0 - 2.0 * b.p) / (b.n as f64 * b.p * (1.0 - b.p)).sqrt();
+
+    let epsilon = 0.00000000001;
+    let error = (b.skewness() - expected_skewness).abs();
+    assert!(error < epsilon);
+}
