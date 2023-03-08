@@ -197,3 +197,12 @@ pub fn test_discreteuniform_cdf() {
         assert_eq!(d.cdf(k), expected_cdf);
     }
 }
+
+#[test]
+pub fn test_discreteuniform_mean() {
+    let d = stats::DiscreteUniform::new(0, 10);
+
+    let expected_mean = (d.a + d.b) as f64 / 2.0;
+
+    assert_eq!(d.mean(), expected_mean);
+}
