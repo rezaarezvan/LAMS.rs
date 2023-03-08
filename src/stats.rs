@@ -206,5 +206,9 @@ pub mod stats {
                 1.0
             }
         }
+
+        pub fn mean(&self) -> f64 {
+            (self.a + self.b) as f64 / 2.0
+        }
     }
 }
