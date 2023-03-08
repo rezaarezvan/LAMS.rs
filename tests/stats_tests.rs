@@ -168,3 +168,14 @@ pub fn test_discreteuniform_new() {
 pub fn test_discreteuniform_new_panic() {
     let d = stats::DiscreteUniform::new(10, 0);
 }
+
+#[test]
+pub fn test_discreteuniform_pmf() {
+    let d = stats::DiscreteUniform::new(0, 10);
+
+    let expected_pmf = 1.0 / (d.b - d.a + 1) as f64;
+
+    for k in d.a..=d.b {
+        assert_eq!(d.pmf(k), expected_pmf);
+    }
+}
