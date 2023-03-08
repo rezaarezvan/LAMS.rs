@@ -187,3 +187,13 @@ pub fn test_discreteuniform_pmf_panic() {
 
     assert_eq!(d.pmf(11), expected_pmf);
 }
+
+#[test]
+pub fn test_discreteuniform_cdf() {
+    let d = stats::DiscreteUniform::new(0, 10);
+
+    for k in d.a..=d.b {
+        let expected_cdf = (k - d.a) as f64 / (d.b - d.a ) as f64;
+        assert_eq!(d.cdf(k), expected_cdf);
+    }
+}
