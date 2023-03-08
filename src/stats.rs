@@ -188,5 +188,13 @@ pub mod stats {
 
             DiscreteUniform { a, b }
         }
+
+        pub fn pmf(&self, k: u32) -> f64 {
+            if k < self.a || k > self.b {
+                0.0
+            } else {
+                1.0 / (self.b - self.a + 1) as f64
+            }
+        }
     }
 }
