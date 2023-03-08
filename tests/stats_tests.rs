@@ -179,3 +179,11 @@ pub fn test_discreteuniform_pmf() {
         assert_eq!(d.pmf(k), expected_pmf);
     }
 }
+
+#[test]
+pub fn test_discreteuniform_pmf_panic() {
+    let d = stats::DiscreteUniform::new(0, 10);
+    let expected_pmf = 0.0;
+
+    assert_eq!(d.pmf(11), expected_pmf);
+}
