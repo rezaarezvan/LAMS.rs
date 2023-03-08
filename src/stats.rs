@@ -196,5 +196,15 @@ pub mod stats {
                 1.0 / (self.b - self.a + 1) as f64
             }
         }
+
+        pub fn cdf(&self, k: u32) -> f64 {
+            if k < self.a {
+                0.0
+            } else if k <= self.b {
+                (k - self.a) as f64 / (self.b - self.a) as f64
+            } else {
+                1.0
+            }
+        }
     }
 }
