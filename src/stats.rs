@@ -210,5 +210,10 @@ pub mod stats {
         pub fn mean(&self) -> f64 {
             (self.a + self.b) as f64 / 2.0
         }
+
+        pub fn variance(&self) -> f64 {
+            let n = self.b - self.a + 1;
+            (n * n - 1) as f64 / 12.0
+        }
     }
 }
