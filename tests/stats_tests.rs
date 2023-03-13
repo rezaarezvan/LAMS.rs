@@ -193,7 +193,7 @@ pub fn test_discreteuniform_cdf() {
     let d = stats::DiscreteUniform::new(0, 10);
 
     for k in d.a..=d.b {
-        let expected_cdf = (k - d.a) as f64 / (d.b - d.a ) as f64;
+        let expected_cdf = (k - d.a) as f64 / (d.b - d.a) as f64;
         assert_eq!(d.cdf(k), expected_cdf);
     }
 }
@@ -205,4 +205,13 @@ pub fn test_discreteuniform_mean() {
     let expected_mean = (d.a + d.b) as f64 / 2.0;
 
     assert_eq!(d.mean(), expected_mean);
+}
+
+#[test]
+pub fn test_discreteuniform_variance() {
+    let d = stats::DiscreteUniform::new(0, 10);
+    let n = d.b - d.a + 1;
+    let expected_variance = (n * n - 1) as f64 / 12.0;
+
+    assert_eq!(d.variance(), expected_variance);
 }
