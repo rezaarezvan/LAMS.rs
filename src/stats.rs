@@ -215,5 +215,9 @@ pub mod stats {
             let n = self.b - self.a + 1;
             (n * n - 1) as f64 / 12.0
         }
+
+        pub fn skewness(&self) -> f64 {
+            0.0
+        }
     }
 }
