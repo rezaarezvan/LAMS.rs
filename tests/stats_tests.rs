@@ -215,3 +215,10 @@ pub fn test_discreteuniform_variance() {
 
     assert_eq!(d.variance(), expected_variance);
 }
+
+#[test]
+pub fn test_discreteuniform_skewness() {
+    let d = stats::DiscreteUniform::new(0, 10);
+
+    assert_eq!(d.skewness(), 0.0);
+}
