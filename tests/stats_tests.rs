@@ -222,3 +222,9 @@ pub fn test_discreteuniform_skewness() {
 
     assert_eq!(d.skewness(), 0.0);
 }
+
+#[test]
+pub fn test_geometric_new() {
+    let g = stats::Geometric::new(0.5);
+    assert_eq!(g.p, 0.5);
+}
