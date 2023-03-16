@@ -220,4 +220,12 @@ pub mod stats {
             0.0
         }
     }
+
+    impl Geometric {
+        pub fn new(p: f64) -> Geometric {
+            assert!(p >= 0.0 && p <= 1.0);
+
+            Geometric { p }
+        }
+    }
 }
