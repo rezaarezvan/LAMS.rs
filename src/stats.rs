@@ -227,5 +227,9 @@ pub mod stats {
 
             Geometric { p }
         }
+
+        pub fn pmf(&self, k: u32) -> f64 {
+            self.p * (1.0 - self.p).powi(k as i32)
+        }
     }
 }
