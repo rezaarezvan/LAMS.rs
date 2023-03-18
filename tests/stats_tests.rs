@@ -228,3 +228,20 @@ pub fn test_geometric_new() {
     let g = stats::Geometric::new(0.5);
     assert_eq!(g.p, 0.5);
 }
+
+#[test]
+#[should_panic]
+pub fn test_geometric_new_panic() {
+    let g = stats::Geometric::new(1.5);
+}
+
+#[test]
+pub fn test_geometric_pmf() {
+    let g = stats::Geometric::new(0.5);
+    let n = 10;
+
+    for k in 0..=n {
+        let expected_pmf = g.p * (1.0 - g.p).powi(k as i32);
+        assert_eq!(g.pmf(k), expected_pmf);
+    }
+}
