@@ -257,3 +257,12 @@ pub fn test_geometric_cdf() {
 
     assert_eq!(g.cdf(0), 0.5);
 }
+
+#[test]
+pub fn test_geometric_mean() {
+    let g = stats::Geometric::new(0.5);
+
+    let expected_mean = 1.0 / g.p;
+
+    assert_eq!(g.mean(), expected_mean);
+}
