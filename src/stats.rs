@@ -21,9 +21,9 @@ pub mod stats {
     }
 
     pub struct HyperGeometric {
+        pub N: u32,
+        pub K: u32,
         pub n: u32,
-        pub m: u32,
-        pub k: u32,
     }
 
     pub struct NegativeBinomial {
@@ -246,6 +246,14 @@ pub mod stats {
 
         pub fn skewness(self) -> f64 {
             (2.0 - self.p) / ((1.0 - self.p).sqrt())
+        }
+    }
+
+    impl HyperGeometric {
+        pub fn new(N: u32, K: u32, n: u32) -> HyperGeometric {
+            assert!(K <= N && n <= N);
+
+            HyperGeometric { N, K, n }
         }
     }
 }
