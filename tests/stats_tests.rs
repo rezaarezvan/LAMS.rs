@@ -266,3 +266,12 @@ pub fn test_geometric_mean() {
 
     assert_eq!(g.mean(), expected_mean);
 }
+
+#[test]
+pub fn test_geometric_variance() {
+    let g = stats::Geometric::new(0.5);
+
+    let expected_variance = (1.0 - g.p) / (g.p * g.p);
+
+    assert_eq!(g.variance(), expected_variance);
+}
