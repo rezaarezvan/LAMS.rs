@@ -231,5 +231,9 @@ pub mod stats {
         pub fn pmf(&self, k: u32) -> f64 {
             self.p * (1.0 - self.p).powi(k as i32)
         }
+
+        pub fn cdf(&self, k: u32) -> f64 {
+            1.0 - (1.0 - self.p).powi((k + 1) as i32)
+        }
     }
 }
