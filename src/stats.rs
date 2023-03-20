@@ -239,5 +239,9 @@ pub mod stats {
         pub fn mean(self) -> f64 {
             1.0 / self.p
         }
+
+        pub fn variance(self) -> f64 {
+            (1.0 - self.p) / (self.p * self.p)
+        }
     }
 }
