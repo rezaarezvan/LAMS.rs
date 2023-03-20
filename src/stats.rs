@@ -243,5 +243,9 @@ pub mod stats {
         pub fn variance(self) -> f64 {
             (1.0 - self.p) / (self.p * self.p)
         }
+
+        pub fn skewness(self) -> f64 {
+            (2.0 - self.p) / ((1.0 - self.p).sqrt())
+        }
     }
 }
