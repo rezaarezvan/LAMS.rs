@@ -275,3 +275,14 @@ pub fn test_geometric_variance() {
 
     assert_eq!(g.variance(), expected_variance);
 }
+
+#[test]
+pub fn test_geometric_skewness() {
+    let g = stats::Geometric::new(0.5);
+
+    let expected_skewness = (2.0 - g.p) / (1.0 - g.p).sqrt();
+
+    let epsilon = 0.00000000001;
+    let error = (g.skewness() - expected_skewness).abs();
+    assert!(error < epsilon);
+}
