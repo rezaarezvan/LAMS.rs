@@ -245,3 +245,15 @@ pub fn test_geometric_pmf() {
         assert_eq!(g.pmf(k), expected_pmf);
     }
 }
+
+#[test]
+pub fn test_geometric_cdf() {
+    let g = stats::Geometric::new(0.5);
+    let n = 10;
+
+    let expected_cdf = 1.0 - (1.0 - g.p).powi(n as i32 + 1);
+
+    assert_eq!(g.cdf(n), expected_cdf);
+
+    assert_eq!(g.cdf(0), 0.5);
+}
