@@ -286,3 +286,12 @@ pub fn test_geometric_skewness() {
     let error = (g.skewness() - expected_skewness).abs();
     assert!(error < epsilon);
 }
+
+#[test]
+pub fn test_hypergeometric_new() {
+    let h = stats::HyperGeometric::new(10, 5, 3);
+
+    assert_eq!(h.N, 10);
+    assert_eq!(h.K, 5);
+    assert_eq!(h.n, 3);
+}
