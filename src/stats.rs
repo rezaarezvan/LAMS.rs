@@ -235,5 +235,9 @@ pub mod stats {
         pub fn cdf(&self, k: u32) -> f64 {
             1.0 - (1.0 - self.p).powi((k + 1) as i32)
         }
+
+        pub fn mean(self) -> f64 {
+            1.0 / self.p
+        }
     }
 }
